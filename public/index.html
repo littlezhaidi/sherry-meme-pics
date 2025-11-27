@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>橘雪莉生成器 (Node.js 版)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>橘雪莉生成器</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="bg-select">选择背景图片:</label>
+                <select id="bg-select"></select>
+                <div id="bg-preview-container">
+                    <img id="bg-preview" src="" alt="Background Preview">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="font-select">选择字体:</label>
+                <select id="font-select"></select>
+            </div>
+
+            <div class="control-group">
+                <label for="text-input">输入文字:</label>
+                <textarea id="text-input" rows="4" placeholder="请输入要生成的文字..."></textarea>
+            </div>
+
+            <div class="control-group settings-row">
+                <div>
+                    <label for="font-size">最大字号:</label>
+                    <input type="number" id="font-size" value="100" min="20" max="200">
+                </div>
+                <div>
+                    <label for="text-color">文字颜色:</label>
+                    <input type="color" id="text-color" value="#ffffff">
+                </div>
+            </div>
+
+            <div class="control-group settings-row">
+                <label>
+                    <input type="checkbox" id="use-bold"> 加粗文字
+                </label>
+                <label>
+                    <input type="checkbox" id="use-outline"> 描边
+                </label>
+                <div>
+                    <label for="outline-width">描边宽度:</label>
+                    <input type="number" id="outline-width" value="2" min="0" max="10">
+                </div>
+            </div>
+
+            <button id="generate-btn">生成图片</button>
+        </div>
+
+        <div class="result-area">
+            <h2>生成结果</h2>
+            <div id="loading" class="hidden">生成中...</div>
+            <div id="result-container">
+                <img id="result-image" src="" alt="Generated Image" class="hidden">
+            </div>
+            <div id="download-link-container" class="hidden">
+                <a id="download-link" href="#" download>下载图片</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
