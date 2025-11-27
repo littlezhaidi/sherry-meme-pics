@@ -95,12 +95,10 @@ async function pushToGitHub() {
                 remoteRef: 'main',
                 ref: 'main',
                 onAuth: () => {
-                    // 这里需要提供认证信息
-                    console.log('需要 GitHub 认证信息');
-                    console.log('请提供 Personal Access Token 或用户名密码');
+                    console.log('使用 GitHub Personal Access Token 进行认证...');
                     return {
                         username: 'liangcka', // 你的 GitHub 用户名
-                        password: 'YOUR_GITHUB_TOKEN' // 需要替换为你的 GitHub token
+                        password: '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' // 你的 GitHub token
                     };
                 }
             });
