@@ -59,12 +59,13 @@ async function pushToGitHub() {
         
         console.log('提交创建成功:', commitHash);
         
-        // 更新 HEAD 引用
+        // 更新 HEAD 引用（强制更新）
         await git.writeRef({
             fs,
             dir,
             ref: 'refs/heads/main',
-            value: commitHash
+            value: commitHash,
+            force: true
         });
         
         console.log('HEAD 引用已更新');
