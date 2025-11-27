@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "cx_Freeze>=7.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tachibana-sherry-generator"
+version = "1.2"
+description = "Tachibana Sherry Meme Generator - 橘雪莉表情包生成器"
+readme = "README.md"
+authors = [
+    {name = "Tachibana Sherry Generator", email = "contact@example.com"}
+]
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["meme", "generator", "tachibana", "sherry", "表情包"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Multimedia :: Graphics",
+]
+
+dependencies = [
+    "pillow>=10.0.0",
+    "pynput>=1.7.0",
+    "pywin32>=300",
+    "psutil>=5.0.0",
+    "pyperclip>=1.8.0",
+]
+
+[project.scripts]
+tachibana-sherry-generator = "main:main"
+
+[tool.setuptools]
+py-modules = ["Tachibana_Sherry_Generator"]
+
+[tool.cx_freeze]
+build_exe = "build"
+packages = ["tkinter", "PIL"]
+include_files = [
+    "background_images/",
+    "Font/",
+    "output_images/",
+    "images/",
+    "comments/",
+]
+excludes = ["test", "unittest", "email", "xml", "pydoc"]
+optimize = 2
