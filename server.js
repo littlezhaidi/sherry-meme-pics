@@ -122,8 +122,27 @@ app.post('/api/generate', async (req, res) => {
         const canvas = createCanvas(width, height);
         const ctx = canvas.getContext('2d');
 
-        // Draw background
-        ctx.drawImage(image, 0, 0, width, height);
+        // Draw background with cover mode
+        const imgAspectRatio = image.width / image.height;
+        const canvasAspectRatio = width / height;
+        
+        let drawWidth, drawHeight, offsetX, offsetY;
+        
+        if (imgAspectRatio > canvasAspectRatio) {
+            // Image is wider than canvas - fit to height, crop sides
+            drawHeight = height;
+            drawWidth = image.width * (height / image.height);
+            offsetX = (width - drawWidth) / 2;
+            offsetY = 0;
+        } else {
+            // Image is taller than canvas - fit to width, crop top/bottom
+            drawWidth = width;
+            drawHeight = image.height * (width / image.width);
+            offsetX = 0;
+            offsetY = (height - drawHeight) / 2;
+        }
+        
+        ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
 
         if (text) {
             // Text Drawing Logic
@@ -197,12 +216,16 @@ app.post('/api/generate', async (req, res) => {
             }
         }
 
-        // Save image
+        // Save image with optimized compression
         const timestamp = new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14);
         const filename = `${timestamp}.png`;
         const outputPath = path.join(OUTPUT_DIR, filename);
         
-        const buffer = canvas.toBuffer('image/png');
+        // Use higher quality PNG compression
+        const buffer = canvas.toBuffer('image/png', {
+            compressionLevel: 0, // 0 = no compression (best quality), 9 = max compression
+            filters: canvas.PNG_FILTER_NONE
+        });
         fs.writeFileSync(outputPath, buffer);
 
         res.json({ 
