@@ -6,20 +6,25 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
+const root = process.cwd();
 
 app.use(express.json());
-app.use(express.static('public'));
-app.use('/background_images', express.static('background_images'));
-app.use('/output_images', express.static('output_images'));
+app.use(express.static(path.join(root, 'public')));
+app.use('/background_images', express.static(path.join(root, 'background_images')));
+//app.use('/output_images', express.static('output_images'));
 
-const FONT_DIR = path.join(__dirname, 'Font');
-const BG_DIR = path.join(__dirname, 'background_images');
-const OUTPUT_DIR = path.join(__dirname, 'output_images');
+const FONT_DIR = path.join(root, 'Font');
+const BG_DIR = path.join(root, 'background_images');
+//const OUTPUT_DIR = path.join(root, 'output_images');
 
 // Ensure output directory exists
 //if (!fs.existsSync(OUTPUT_DIR)) {
 //    fs.mkdirSync(OUTPUT_DIR);
 //}
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(root, 'public', 'index.html'));
+});
 
 // Register fonts
 const availableFonts = [];
@@ -219,7 +224,7 @@ app.post('/api/generate', async (req, res) => {
         // Save image with optimized compression
         const timestamp = new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14);
         const filename = `${timestamp}.png`;
-        const outputPath = path.join(OUTPUT_DIR, filename);
+        //const outputPath = path.join(OUTPUT_DIR, filename);
         
         // Use higher quality PNG compression
         const buffer = canvas.toBuffer('image/png', {
