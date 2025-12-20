@@ -17,9 +17,9 @@ const BG_DIR = path.join(__dirname, 'background_images');
 const OUTPUT_DIR = path.join(__dirname, 'output_images');
 
 // Ensure output directory exists
-if (!fs.existsSync(OUTPUT_DIR)) {
-    fs.mkdirSync(OUTPUT_DIR);
-}
+//if (!fs.existsSync(OUTPUT_DIR)) {
+//    fs.mkdirSync(OUTPUT_DIR);
+//}
 
 // Register fonts
 const availableFonts = [];
@@ -226,7 +226,8 @@ app.post('/api/generate', async (req, res) => {
             compressionLevel: 0, // 0 = no compression (best quality), 9 = max compression
             filters: canvas.PNG_FILTER_NONE
         });
-        fs.writeFileSync(outputPath, buffer);
+        //fs.writeFileSync(outputPath, buffer);
+	const base64Image = buffer.toString('base64');
 
         res.json({ 
             success: true, 
