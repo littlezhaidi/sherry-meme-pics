@@ -230,7 +230,7 @@ app.post('/api/generate', async (req, res) => {
 
         res.json({ 
             success: true, 
-            imageUrl: `/output_images/${filename}`,
+            imageUrl: `data:image/png;base64,${base64Image}`,
             filename: filename
         });
 
