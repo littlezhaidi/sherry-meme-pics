@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(files => {
             if (files.length === 0) {
                 const option = document.createElement('option');
-                option.text = "没有找到背景图片";
+                option.text = "沒有找到背景圖片";
                 bgSelect.add(option);
                 bgSelect.disabled = true;
                 return;
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(files => {
             if (files.length === 0) {
                 const option = document.createElement('option');
-                option.text = "默认字体";
+                option.text = "預設字體";
                 option.value = "";
                 fontSelect.add(option);
                 return;
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const useBold = document.getElementById('use-bold').checked;
 
         if (!text) {
-            alert("请输入文字！");
+            alert("請輸入文字！");
             return;
         }
 
@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 downloadLink.download = data.filename;
                 downloadLinkContainer.classList.remove('hidden');
             } else {
-                alert("生成失败: " + data.error);
+                alert("生成失敗: " + data.error);
             }
         })
         .catch(err => {
             loadingDiv.classList.add('hidden');
             console.error(err);
-            alert("请求出错，请查看控制台");
+            alert("請求出错，請查看控制台");
         });
     });
 });

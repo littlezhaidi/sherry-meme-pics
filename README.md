@@ -1,7 +1,59 @@
+# 橘雪莉生成器（適配Vercel環境）
+一個隨時能部署到 Vercel 的 Web 應用程式。  
+基於 Node.js 版本的橘雪莉生成器上，改為將圖片暫存在記憶體中，並且為 Vercel 的部署新增了適配。
+
+## 🛠️ 手動部署
+
+1. Fork 這整個倉庫到您的 Github 帳戶之下。
+2. 前往 [Vercel首頁](https://vercel.com/) ，點選 `Start Depolying` 。
+如果您尚未擁有 Vercel 帳戶，請點選右上角 `Sign Up` 註冊。
+3. 點選 `Add New Project` ，並且在 `Import Git Repository` 欄位中，連結您的 Github 帳戶。
+4. 找到您剛才 Fork 的倉庫， 點選 `Import` 。
+5. 在 New Project 設定中，您可以任意更改 `Project Name` 。
+並確保 `Framework Preset` 設定為 `Other`，其他欄位維持預設即可。
+6. 點選 `Deploy` ，等待部署完成後，即可前往控制台。
+7. 您可以在控制台為應用程式自訂網域。
+
+您也可以自行添加圖片、字型素材。只需要在倉庫中直接上傳/刪除檔案即可，但需要注意檔案格式。
+
+圖片：
+- `.png`
+- `.jpg`
+- `.jpeg`
+
+字型：
+- `.ttf`
+- `.otf`
+
+`.ttc` 似乎不可用，但可能是我的電腦環境問題，因此我沒有將它排除。
+
+## 📂 專案結構
+
+```
+node-app/
+├── background_images/  # 背景圖片素材目錄
+├── Font/              # 字型檔案目錄
+├── public/            # 前端靜態資源
+│   ├── index.html     # 首頁
+│   ├── style.css      # 樣式表
+│   └── script.js      # 前端互動邏輯
+├── server.js          # Node.js 後端伺服器入口
+├── package.json       # 專案配置與依賴管理
+├── vercel.json        # Vercel 設定檔
+└── README.md          # 專案說明文檔
+```
+
+### To-Do List
+- [ ] 支援 Netlify 部署
+- [ ] 為本文件添加圖片
+- [x] 繁體中文
+- [ ] 一鍵部署
+- [ ] 圖片分類，擴增字體
+- [ ] 明確標註原作者訊息
+=======
 # 橘雪莉生成器 (Node.js 版)
 
 这是一个基于 Node.js 和 Express 的 Web 应用程序，复刻了原 Python 版的橘雪莉生成器功能。它允许用户在网页上选择背景图片、输入文字，并生成带有自定义字体样式的橘雪莉表情包/图片。
-哇襖！
 
 ## ✨ 功能特点
 
